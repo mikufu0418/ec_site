@@ -1,0 +1,26 @@
+<h1>商品詳細ページ</h1>
+<h1>Books</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Tag</th>
+      <th>Author</th>
+      <th>Published On</th>
+      <th>showing</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+        <td><%= @book.title %></td>   
+        <td><%= @book.tags.map(&:name).join(', ') %></td>
+        <td><%= @book.author %></td>
+        <td><%= @book.published_on %></td>
+        <td><%= @book.showing %></td>
+        <td><%= @book.price %></td>
+  </tbody>
+</table>
+

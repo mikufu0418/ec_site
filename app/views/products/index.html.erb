@@ -1,0 +1,29 @@
+<h1>商品一覧</h1>
+<h1>Books</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Published On</th>
+      <th>showing</th>
+      <th>Price</th>
+      <th>詳細</th>
+      <th>購入</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.published_on %></td>
+        <td><%= book.showing %></td>
+        <td><%= book.price %></td>
+       <td><%= link_to 'click', product_path(book) %></td>
+       
+     </tr>
+    <% end %>
+  </tbody>
+</table>

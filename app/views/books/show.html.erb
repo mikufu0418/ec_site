@@ -1,5 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<%= @book.tags.map(&:name).join(', ') %>
+
+
+
 <%= render @book %>
 
 <div>
@@ -8,3 +12,5 @@
 
   <%= button_to "Destroy this book", @book, method: :delete %>
 </div>
+
+

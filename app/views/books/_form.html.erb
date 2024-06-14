@@ -36,6 +36,15 @@
     <%= form.number_field :price %>
   </div>
 
+  
+
+
+  <div class="fields">
+    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  </div>
+ <%= link_to "New tag", new_tag_path %>
+
+
   <div>
     <%= form.submit %>
   </div>

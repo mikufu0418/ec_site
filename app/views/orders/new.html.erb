@@ -1,0 +1,30 @@
+
+<h1>注文情報を入力してください</h1>
+<%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |form| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :book_id, value: @book.id %>
+
+  <div class="field">
+    <%= form.label :数量 %>
+    <%= form.number_field :count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :お届け先住所 %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "次へ進む" %>
+  </div>
+<% end %>

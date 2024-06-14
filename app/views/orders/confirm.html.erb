@@ -1,0 +1,18 @@
+
+<h1>注文内容の確認</h1>
+
+<p>以下の内容で注文を確定しますか？</p>
+
+<p>注文する商品: <%= @book.title %></p>
+<p>数量: <%= @order.count %></p>
+<p>配送先: <%= @order.address %></p>
+
+<%= form_with(model: @order, url: orders_path) do |form| %>
+  <%= form.hidden_field :book_id, value: @order.book_id %>
+  <%= form.hidden_field :count, value: @order.count %>
+  <%= form.hidden_field :address, value: @order.address %>
+
+  <div class="actions">
+    <%= form.submit "注文を確定する" %>
+  </div>
+<% end %>

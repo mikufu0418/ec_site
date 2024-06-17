@@ -12,8 +12,13 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :book_id, value: @book.id %>
+<p>
+    <strong>タイトル：</strong>
+    <%= @book.title %>
+  </p>
 
+
+  <%= form.hidden_field :book_id, value: @book.id %>
   <div class="field">
     <%= form.label :数量 %>
     <%= form.number_field :count %>

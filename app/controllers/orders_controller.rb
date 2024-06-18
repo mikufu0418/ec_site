@@ -27,5 +27,4 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:count, :address, :book_id)
   end
   
-  
 end

@@ -17,11 +17,15 @@ class OrdersController < ApplicationController
       render "confirm"
     end
   end
-  def complete
+
+  def complete  
+    CompleteMailer.complete_mail(current_user).deliver_now
   end
+
   private
   def order_params
     params.require(:order).permit(:count, :address, :book_id)
   end
+  
   
 end

@@ -1,4 +1,7 @@
 <h1>商品一覧</h1>
+<% if user_signed_in? %>
+<p><%= link_to current_user.email, mypage_path %></p>
+<% end %>
 <h1>Books</h1>
 
 <table border="1">

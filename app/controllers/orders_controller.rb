@@ -14,14 +14,15 @@ class OrdersController < ApplicationController
     if @order.save
       @book = Book.find(order_params[:book_id]) 
       @book.soldout! 
-      redirect_to complete_orders_path
+      redirect_to complete_orders_path(book_id: @book.id)
     else
       render "confirm"
     end
   end
 
   def complete  
-    CompleteMailer.complete_mail(current_user).deliver_now
+    book = Book.find(params[:book_id])
+    CompleteMailer.complete_mail(current_user,book).deliver_now
   end
 
   private

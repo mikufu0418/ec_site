@@ -9,7 +9,8 @@
 <p>
    <strong>Photo:</strong>
    <% if @book.photo.attached? %>
-   <%= image_tag @book.photo %>
+   <%= image_tag @book.thumbnail %>
+   <%= @book.status %>
    <% end %>
 </p>
 

@@ -19,6 +19,7 @@
       <th>showing</th>
       <th>Price</th>
       <th>詳細</th>
+      <th>在庫</th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +31,7 @@
         <td><%= book.showing %></td>
         <td><%= book.price %></td>
        <td><%= link_to 'click', product_path(book) %></td>
+       <td><%= book.status %>
        
      </tr>
     <% end %>

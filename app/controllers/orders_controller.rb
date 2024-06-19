@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      @book = Book.find(order_params[:book_id]) 
+      @book.soldout! 
       redirect_to complete_orders_path
     else
       render "confirm"

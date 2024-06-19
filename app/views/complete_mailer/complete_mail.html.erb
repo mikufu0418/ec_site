@@ -4,13 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>この度はのご購入いただきありがとうございます。</h1>
-
-      <%= image_tag @book.thumbnail %>
+    <p>この度は「<%= @book.title %>」のご購入いただきありがとうございます。💛
+        著者：<%= @book.author %>
+        数量: <%= @order.count %>
+    </p>
 
     
       <p>
-        商品発送までお待ちくださいませ。
+        商品発送までお待ちくださいませ。📖
       </p>
   </body>
 </html>

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       get :complete
     end
   end
+  resources :carts, only: :show
+  resources :line_items, only: :create
 end

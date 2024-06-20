@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :move_to_signed_in
   def show
     @book = Book.find(params[:id])
+    @cart = current_cart
   end
 
   def index

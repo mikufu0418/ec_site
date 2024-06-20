@@ -32,8 +32,12 @@
 
 <%= link_to '商品一覧ページに戻る', products_path %>
 
-<% if @book.sale? %>
-  <%= link_to '購入', new_order_path(book_id: @book.id) %>
-<% else %>
-  <p>売り切れ</p>
-<% end %>
+
+        <% if current_cart?(@book, @cart) %>
+            <%= '買い物かごに追加されました' %>
+        <% else %>
+          <%= link_to '買い物かごに追加する', line_items_path(book_id: @book.id),
+              data: {"turbo-method": :post}, class: 'btn btn-default' %>
+        <% end %>
+
+

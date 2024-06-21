@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+    before_action :current_cart
+    
+    
     def after_sign_in_path_for(resource)
         products_path
     end

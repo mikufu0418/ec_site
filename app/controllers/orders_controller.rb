@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   def new
     @order = Order.new
-    @book = Book.find(params[:book_id])
+    @books = @current_cart.books
   end
 
   def confirm
     @order = Order.new(order_params)
-    @book = Book.find(order_params[:book_id])
+    @books = Book.where(order_params[:book_ids])
+    @line_items = @current_cart.line_items 
   end
 
   def create
@@ -24,6 +25,7 @@ class OrdersController < ApplicationController
     book = Book.find(params[:book_id])
     order = Order.find(params[:order_id])
     CompleteMailer.complete_mail(current_user,book,order).deliver_now
+    @order = Order.find(params[:id])
   end
 
   private

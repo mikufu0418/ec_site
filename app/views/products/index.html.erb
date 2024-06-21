@@ -8,7 +8,6 @@
 
 <h1>商品一覧</h1>
 
-<h1>Books</h1>
 
 <table border="1">
   <thead>
@@ -31,12 +30,29 @@
         <td><%= book.showing %></td>
         <td><%= book.price %></td>
        <td><%= link_to 'click', product_path(book) %></td>
-       <td><%= book.status %>
+       <td><%= book.status %></td>
        
      </tr>
     <% end %>
   </tbody>
-</table>
-<% if session[:cart_id] %>
+
   <%= link_to '買い物かごを見る', cart_path(session[:cart_id]) %>
-<% end %>
+
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>

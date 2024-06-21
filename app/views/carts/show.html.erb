@@ -1,7 +1,75 @@
+<h1>買い物かご</h1>
 
-<% @line_items.each do |line_item| %>
-    <% book = line_item.book %>
-        <div>
-         <p><%= book.title %></p>
-        </div>
-<% end %>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>タイトル</th>
+                <th>冊数</th>
+                <th>金額💰</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @line_items.each do |line_item| %>
+                <% book = line_item.book %>
+            
+
+            
+                <tr>
+                    <td> <%= book.title %></td>
+                    <td><%= line_item.quantity %></td>
+                    <td><%= line_item.total_price %></td>
+                </tr>
+            <% end %>
+        </tbody>
+   </table>
+   
+
+   <div>
+   <p>注文数: <%= @current_cart.total_number %><span>冊</span></p>
+   <p>
+     合計金額💰:<%= @current_cart.total_price %>
+     <span>円 (税込)</span>
+   </p>
+ </div>
+
+
+ <div class="actions">
+ <% if @line_items.count == 0 %>
+     <p>買い物かごには何も入っていません(´；ω；`)ｳｩｩ</p>
+ <% else %> 
+  <%= link_to '購入する', new_order_path %>
+     <div class="action-link">
+         <%= link_to '買い物かごを空にする(´；ω；`)ｳｩｩ', @cart, data: { "turbo-method": :delete, "turbo-confirm": '買い物かごの中身をすべて削除してもいいですか？(´；ω；`)ｳｩｩ' } %>
+     </div>
+ <% end %>  
+ <div class="action-link">
+     <%= link_to '商品一覧ページに戻る', products_path %>
+ </div>
+</div>
+
+<style>
+ .actions {
+     text-align: right; 
+ }
+
+ .action-link {
+     display: block; 
+     margin-bottom: 10px; 
+ }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>

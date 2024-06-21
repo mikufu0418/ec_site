@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
+  has_many :order_details, dependent: :destroy
+  has_many :books, through: :order_details 
+
   def total_price 
     order_details.sum { |order| order.total_price } 
   end 
@@ -6,3 +9,4 @@ class Order < ApplicationRecord
     order_details.sum { |order| order.quantity } 
   end 
 end
+

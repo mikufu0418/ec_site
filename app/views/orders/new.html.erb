@@ -1,5 +1,6 @@
 
 <h1>注文情報を入力してください</h1>
+
 <%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |form| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">

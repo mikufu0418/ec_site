@@ -5,32 +5,44 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    counts = order_params[:count]
     @order = Order.new(order_params)
-    @books = Book.where(order_params[:book_ids])
-    @line_items = @current_cart.line_items 
-  end
-
-  def create
-    @order = Order.new(order_params)
-    if @order.save
-      @book = Book.find(order_params[:book_id]) 
-      @book.soldout! 
-      redirect_to complete_orders_path(book_id: @book.id, order_id: @order.id)
-    else
-      render "confirm"
+    @books = Book.where(id: order_params[:book_ids])
+    @line_items = @current_cart.line_items
+    counts.each_with_index do |count, index|
+      book_id = order_params[:book_ids][index]
+      line_item = @line_items.find_by(book_id: book_id)
+      if line_item.present?
+        line_item.update(quantity: count)
+      end
     end
   end
 
+  
+
+  def create
+    count = order_params[:count].map(&:to_i).sum
+    @order = Order.new(address: order_params[:address], count: count)
+    @books = Book.where(id: order_params[:book_ids])
+    if @order.save
+      @books.each do |book|
+            book.soldout! 
+    end
+      OrderDetail.create_items(@order, @current_cart.line_items)
+        redirect_to complete_order_path(@order, books: @books)
+    else
+      redirect_to new_order_path, alert: '注文の登録ができませんでした'  
+    end
+  end
+  
   def complete  
-    book = Book.find(params[:book_id])
-    order = Order.find(params[:order_id])
-    CompleteMailer.complete_mail(current_user,book,order).deliver_now
+    @books = Book.where(id: params[:books])
     @order = Order.find(params[:id])
+
   end
 
   private
   def order_params
-    params.require(:order).permit(:count, :address, :book_id)
+    params.require(:order).permit(:address, count: [], book_ids: [])
   end
-  
 end

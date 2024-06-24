@@ -8,5 +8,7 @@ class Order < ApplicationRecord
   def total_number 
     order_details.sum { |order| order.quantity } 
   end 
+
+
 end
 

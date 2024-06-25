@@ -2,6 +2,11 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @books = @current_cart.books
+    soldout_books = @current_cart.books.where(status: :soldout)
+    if soldout_books.exists?
+      flash[:alert] = "#{soldout_books.count}冊の商品が売り切れです。カートに追加できません。"
+      redirect_to products_path
+    end
   end
 
   def confirm
@@ -18,7 +23,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  
 
   def create
     count = order_params[:count].map(&:to_i).sum
@@ -29,17 +33,19 @@ class OrdersController < ApplicationController
             book.soldout! 
     end
       OrderDetail.create_items(@order, @current_cart.line_items)
-        redirect_to complete_order_path(@order, books: @books)
+        redirect_to complete_order_path(@order)
     else
       redirect_to new_order_path, alert: '注文の登録ができませんでした'  
     end
   end
   
   def complete  
-    @books = Book.where(id: params[:books])
     @order = Order.find(params[:id])
+    CompleteMailer.complete_mail(current_user,@order).deliver_now
+
 
   end
+
 
   private
   def order_params

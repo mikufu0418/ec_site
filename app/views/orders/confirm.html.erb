@@ -22,7 +22,37 @@
   <%= form.hidden_field :address, value: @order.address %>
 
 
-  <div class="actions">
-    <%= form.submit "注文を確定する" %>
+
+  <div class="order-summary">
+  <div>
+    <p>
+      注文数: <strong class="highlight"><%= @current_cart.total_number %></strong><span>冊</span>
+    </p>
+    <p>
+      合計金額💰: <strong class="highlight"><%= @current_cart.total_price %></strong>
+      <span>円 (税込)</span>
+    </p>
   </div>
+</div>
+
+
+  <div class="actions">
+
+  <%= link_to "入力画面に戻る", new_order_path %>
+
+  </div>
+
+<br>
+
+
+
+  <div class="actions">
+
+    <%= form.submit "注文を確定する" %>
+
+  </div>
+
+
+
+  </br>
 <% end %>

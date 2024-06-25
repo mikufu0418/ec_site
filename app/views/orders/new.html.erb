@@ -1,3 +1,8 @@
+<% if flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
 <h1>🚚注文情報を入力してください🚚</h1>
 

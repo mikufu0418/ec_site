@@ -4,11 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>この度は「<%= @book.title %>」のご購入いただきありがとうございます。💛
-        著者：<%= @book.author %>
+  <% @order.books.each do |book| %>
+    <p>この度は「<%= book.title %>」のご購入いただきありがとうございます。💛
+        著者：<%= book.author %>
         数量: <%= @order.count %>
+        料金: <%= @order.total_price %>
     </p>
-
+<% end %>
     
       <p>
         商品発送までお待ちくださいませ。📖

@@ -14,6 +14,7 @@
     <tr>
       <th>Title</th>
       <th>Author</th>
+      <th>Summary</th>
       <th>Published On</th>
       <th>showing</th>
       <th>Price</th>
@@ -26,12 +27,16 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
+        <td><%= book.summary %></td>
         <td><%= book.published_on %></td>
         <td><%= book.showing %></td>
         <td><%= book.price %></td>
        <td><%= link_to 'click', product_path(book) %></td>
-       <td><%= book.status %></td>
-       
+       <% if book.status == 'soldout' %>
+          <td class="soldout"><%= book.status %></td>
+        <% else %>
+          <td><%= book.status %></td>
+        <% end %>
      </tr>
     <% end %>
   </tbody>
@@ -54,5 +59,9 @@
   }
   th {
     background-color: #f2f2f2;
+  }
+  .soldout {
+    color: red;
+    font-weight: bold; /* オプション: フォントを太くする */
   }
 </style>

@@ -4,16 +4,35 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  <% @order.books.each do |book| %>
-    <p>この度は「<%= book.title %>」のご購入いただきありがとうございます。💛
-        著者：<%= book.author %>
-        数量: <%= @order.count %>
-        料金: <%= @order.total_price %>
-    </p>
-<% end %>
-    
-      <p>
-        商品発送までお待ちくださいませ。📖
-      </p>
-  </body>
+  <div class="order-details">
+    <h1>注文内容の確認</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>著者</th>
+          <th>あらすじ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.summary %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div>
+      <p>合計数量: <strong><%= @order.count %>冊</strong></p>
+      <p>合計金額: <strong><%= @order.total_price %>円</strong>（税込）</p>
+    </div>
+
+    <p>この度はご購入いただきありがとうございます。💛</p>
+    <p>商品発送までお待ちくださいませ。📖</p>
+  </div>
+</body>
 </html>

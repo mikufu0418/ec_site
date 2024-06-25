@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+
+
+
   <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
@@ -20,6 +23,12 @@
     <%= form.label :author, style: "display: block" %>
     <%= form.text_field :author %>
   </div>
+
+  <div>
+    <%= form.label :summary, style: "display: block" %>
+    <%= form.text_area :summary %>
+  </div>
+
 
   <div>
     <%= form.label :published_on, style: "display: block" %>
@@ -36,23 +45,27 @@
     <%= form.number_field :price %>
   </div>
 
+  <br>
+  
   <div>
     <%=  form.radio_button :status, :sale %>
     <%= form.label :status, "販売中" %>
   </div>
 
-
+<br>
 
   <div class="field">
-   <%= form.file_field :photo %>
+   画像：<%= form.file_field :photo %>
   </div>
 
+<br>
 
   <div class="fields">
     <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   </div>
  <%= link_to "タグの一覧ページ", tags_path %>
 
+<br>
 
   <div>
     <%= form.submit %>

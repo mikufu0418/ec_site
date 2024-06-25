@@ -21,4 +21,9 @@
     padding: 10px; 
     margin-bottom: 20px; 
   }
+
+body {
+    border-top: 10px solid #fcc; 
+    border-bottom: 10px solid #fcc; 
+  }
   

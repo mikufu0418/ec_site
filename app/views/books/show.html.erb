@@ -1,10 +1,57 @@
 <p style="color: green"><%= notice %></p>
 
-『<%= @book.tags.map(&:name).join(', ') %>』シリーズ
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Tag</th>
+      <th>Summary</th>
+      <th>Author</th>
+      <th>Published On</th>
+      <th>showing</th>
+      <th>Price</th>
+      <th>在庫</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+        <td><%= @book.title %></td>   
+        <td><%= @book.tags.map(&:name).join(', ') %></td>
+        <td><%= @book.summary %>
+        <td><%= @book.author %></td>
+        <td><%= @book.published_on %></td>
+        <td><%= @book.showing %></td>
+        <td><%= @book.price %></td>
+        <td><%= @book.status %></td>
+  </tbody>
+</table>
 
 
 
-<%= render @book %>
+
+
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+
+
 
 <p>
    <strong>Photo:</strong>

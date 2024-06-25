@@ -1,58 +1,41 @@
 
-<h1>注文内容の確認</h1>
+<h1>以下の内容で注文を確定しますか？</h1>
 <%= form_with(model: @order, url: orders_path) do |form| %>
 
+  <% @line_items.each do |line_item| %>
+    <% book = line_item.book %>
+    <div class="book-order-info">
+      <p>注文する商品: <%= book.title %></p>
+      <p>数量: <%= line_item.quantity %>冊</p>
+      <p>料金: <%= line_item.total_price %>円</p>
+    </div>
+    <hr> 
+  <% end %>
 
-<p>以下の内容で注文を確定しますか？</p>
- <% @line_items.each do |line_item| %>
-  <% book = line_item.book %>
-<p>注文する商品: <%= book.title %></p>
-<p>数量: <%= line_item.quantity %></p>
-<p>料金: <%= line_item.total_price %></p>
-<% end %>
-
-<% @books.each do |book| %>
- <%= form.hidden_field :book_id, value: book.id, name: "order[book_ids][]" %>
- <%= form.hidden_field :count, value: @current_cart.total_number, name: "order[count][]" %>
-<% end %>
-
-
-
-
-  <%= form.hidden_field :address, value: @order.address %>
-
-
+  <% @books.each do |book| %>
+    <%= form.hidden_field :book_id, value: book.id, name: "order[book_ids][]" %>
+    <%= form.hidden_field :count, value: @current_cart.total_number, name: "order[count][]" %>
+  <% end %>
 
   <div class="order-summary">
-  <div>
-    <p>
-      注文数: <strong class="highlight"><%= @current_cart.total_number %></strong><span>冊</span>
-    </p>
-    <p>
-      合計金額💰: <strong class="highlight"><%= @current_cart.total_price %></strong>
-      <span>円 (税込)</span>
-    </p>
-  </div>
-</div>
-
-
-  <div class="actions">
-
-  <%= link_to "入力画面に戻る", new_order_path %>
-
+    <div>
+      <p>
+        注文数: <strong class="highlight"><%= @current_cart.total_number %></strong>冊
+      </p>
+      <p>
+        合計金額💰: <strong class="highlight"><%= @current_cart.total_price %></strong>円 (税込)
+      </p>
+    </div>
   </div>
 
-<br>
+  <div class="actions">
+    <%= link_to "入力画面に戻る", new_order_path %>
+  </div>
 
-
+  <br>
 
   <div class="actions">
-
     <%= form.submit "注文を確定する" %>
-
   </div>
 
-
-
-  </br>
 <% end %>

@@ -38,7 +38,7 @@
  <% if @line_items.count == 0 %>
      <p>買い物かごには何も入っていません(´；ω；`)ｳｩｩ</p>
  <% else %> 
-  <%= link_to '購入する', new_order_path %>
+  <%= link_to '購入手続きへ進む', new_order_path %>
      <div class="action-link">
          <%= link_to '買い物かごを空にする(´；ω；`)ｳｩｩ', @cart, data: { "turbo-method": :delete, "turbo-confirm": '買い物かごの中身をすべて削除してもいいですか？(´；ω；`)ｳｩｩ' } %>
      </div>

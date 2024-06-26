@@ -10,4 +10,9 @@ class Book < ApplicationRecord
       photo.variant(resize_to_fill: [300, 300])
     end
     enum status: {sale: 1, soldout: 2}
+    validates :title, presence: true
+    validates :author, presence: true
+    validates :price, presence: true
+    validates :tags, presence: true
+    validates :summary, presence: true, length: { in: 10..30 }
 end

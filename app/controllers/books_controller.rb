@@ -22,16 +22,13 @@ class BooksController < ApplicationController
   # POST /books or /books.json
   def create
     @book = Book.new(book_params)
-
-    respond_to do |format|
+    
       if @book.save
-        format.html { redirect_to book_url(@book), notice: "新しく本を追加しました。" }
-        format.json { render :show, status: :created, location: @book }
+        redirect_to book_url(@book), notice: "新しく本を追加しました。" 
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+         render :new, status: :unprocessable_entity 
       end
-    end
+  
   end
 
   # PATCH/PUT /books/1 or /books/1.json
@@ -39,10 +36,8 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to book_url(@book), notice: "本の情報を更新しました。" }
-        format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
   end

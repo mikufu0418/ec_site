@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      book: 書籍
+      user: ユーザー
+    attributes:
+      book:
+        article:
+        title: タイトル
+        author: 著者
+        summary: あらすじ
+        price: 料金
+        tags: タグ
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+  

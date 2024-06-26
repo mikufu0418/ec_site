@@ -15,33 +15,33 @@
 
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :タイトル, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :author, style: "display: block" %>
+    <%= form.label :著者, style: "display: block" %>
     <%= form.text_field :author %>
   </div>
 
   <div>
-    <%= form.label :summary, style: "display: block" %>
+    <%= form.label :あらすじ, style: "display: block" %>
     <%= form.text_area :summary %>
   </div>
 
 
   <div>
-    <%= form.label :published_on, style: "display: block" %>
+    <%= form.label :出版日, style: "display: block" %>
     <%= form.date_field :published_on %>
   </div>
 
   <div>
-    <%= form.label :showing, style: "display: block" %>
+    <%= form.label :一覧画面に表示させる, style: "display: block" %>
     <%= form.check_box :showing %>
   </div>
 
   <div>
-    <%= form.label :💰price, style: "display: block" %>
+    <%= form.label :💰料金, style: "display: block" %>
     <%= form.number_field :price %>
   </div>
 
@@ -66,8 +66,8 @@
  <%= link_to "タグの一覧ページ", tags_path %>
 
 <br>
-
+<br>
   <div>
-    <%= form.submit %>
+    <%= form.submit "登録する" %>
   </div>
 <% end %>

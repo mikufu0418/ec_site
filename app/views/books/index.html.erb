@@ -1,21 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
-
-
-
-<h1>商品一覧</h1>
+<h1>書籍一覧📖</h1>
 
 
 <table border="1">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Summary</th>
-      <th>Published On</th>
-      <th>showing</th>
-      <th>Price</th>
+      <th>タイトル</th>
+      <th>著者</th>
+      <th>あらすじ</th>
+      <th>出版日</th>
+      <th>💰料金</th>
       <th>詳細</th>
       <th>在庫</th>
     </tr>
@@ -27,18 +22,18 @@
         <td><%= book.author %></td>
         <td><%= book.summary %></td>
         <td><%= book.published_on %></td>
-        <td><%= book.showing %></td>
         <td><%= book.price %></td>
-       <td><%= link_to 'click', book_path(book) %></td>
+       <td><%= link_to '確認', book_path(book) %></td>
        <% if book.status == 'soldout' %>
-          <td class="soldout"><%= book.status %></td>
+          <td class="soldout">売り切れ</td>
         <% else %>
-          <td><%= book.status %></td>
+          <td><%= book.status == 'sale' ? '販売中' : book.status %></td>
         <% end %>
      </tr>
     <% end %>
   </tbody>
-
+</table>
+  <%= link_to "書籍の新規登録を行う", new_book_path %>
 
 
 <style>
@@ -62,4 +57,3 @@
     font-weight: bold; /* オプション: フォントを太くする */
   }
 </style>
-<%= link_to "New book", new_book_path %>

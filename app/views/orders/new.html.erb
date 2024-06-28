@@ -4,52 +4,114 @@
   </div>
 <% end %>
 
-<h1>🚚注文情報を入力してください🚚</h1>
+<div class="form-container">
+  <h1>🚚 注文情報を入力してください 🚚</h1>
 
-<%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |form| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <% @books.each do |book| %>
+  <%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |form| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> が発生しました:</h2>
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% @books.each do |book| %>
       <div class="book-info">
         <p>
-          <strong>タイトル：</strong>
-          <%= book.title %>
-          <br>
+          <strong>タイトル：</strong><br>
+          <%= book.title %><br>
           <strong>数量：</strong>
           <%= form.text_field :count, name: "order[count][]", value: LineItem.find_by(cart_id: @current_cart, book_id: book.id).quantity %>
         </p>
-<div class="field">
-    <%= form.hidden_field :book_id, value: book.id, name: 'order[book_ids][]' %>
-  </div>
+        <%= form.hidden_field :book_id, value: book.id, name: 'order[book_ids][]' %>
+      </div>
+    <% end %>
 
-<% end %>
-
-
-
-  <br>
     <div class="field">
-      <%= form.label :お届け先住所 %>
+      <%= form.label :お届け先住所 %><br>
       <%= form.text_field :address %>
     </div>
 
     <div class="actions">
-      <%= form.submit "次へ進む" %>
+      <%= link_to 'カートに戻る', cart_path(session[:cart_id]), class: "btn btn-secondary cart-link" %>
+      <%= form.submit "次へ進む", class: "btn btn-primary btn-submit" %>
     </div>
-  </br>
-<% end %>
-  <%= link_to '買い物かごに戻る', cart_path(session[:cart_id]) %>
+  <% end %>
+</div>
 
-<% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %>">
-    <%= message %>
-  </div>
-<% end %>
+<style>
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
 
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .alert {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-radius: 4px;
+  }
+
+  #error_explanation {
+    color: #721c24;
+    margin-bottom: 20px;
+  }
+
+  .book-info {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .btn-submit, .cart-link {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+
+  .cart-link {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  .cart-link:hover {
+    background-color: #5a6268;
+  }
+</style>

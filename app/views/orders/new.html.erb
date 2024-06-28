@@ -45,7 +45,8 @@
     </div>
   </br>
 <% end %>
-<%= link_to '戻る', :back %>
+  <%= link_to '買い物かごに戻る', cart_path(session[:cart_id]) %>
+
 <% flash.each do |type, message| %>
   <div class="alert alert-<%= type %>">
     <%= message %>

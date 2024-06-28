@@ -1,11 +1,8 @@
-
 <% if user_signed_in? %>
-
-<p><%= link_to current_user.email, mypage_path %>さんようこそ</p>
+  <p><%= link_to current_user.email, mypage_path, class: "user-link" %> さん、ようこそ！</p>
 <% end %>
 
-  <%= link_to '買い物かごを見る', cart_path(session[:cart_id]) %>
-
+<%= link_to '買い物かごを見る', cart_path(session[:cart_id]), class: "cart-link" %>
 
 <h1>書籍商品一覧📖🛒</h1>
 
@@ -51,6 +48,11 @@
 
 
 <style>
+.user-link {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+  }
   table {
     border-collapse: collapse;
     width: 100%;
@@ -68,6 +70,18 @@
   }
   .soldout {
     color: red;
-    font-weight: bold; /* オプション: フォントを太くする */
+    font-weight: bold; 
+  }
+  .cart-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .cart-link:hover {
+    background-color: #0056b3;
   }
 </style>

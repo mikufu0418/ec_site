@@ -4,14 +4,14 @@
 <table border="1">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Tag</th>
-      <th>Summary</th>
-      <th>Author</th>
-      <th>Published On</th>
-      <th>showing</th>
-      <th>Price</th>
-      <th>在庫</th>
+    <th>タイトル</th>
+    <th>タグ</th>
+    <th>要約</th>
+    <th>著者</th>
+    <th>出版日</th>
+    <th>💰料金</th>
+    <th>在庫</th>
+
     </tr>
   </thead>
 
@@ -22,7 +22,6 @@
         <td><%= @book.summary %>
         <td><%= @book.author %></td>
         <td><%= @book.published_on %></td>
-        <td><%= @book.showing %></td>
         <td><%= @book.price %></td>
         <td><%= @book.status %></td>
   </tbody>
@@ -54,20 +53,19 @@
 
 
 <p>
-   <strong>Photo:</strong>
+   <strong>イメージ画像:</strong>
    <% if @book.photo.attached? %>
    <%= image_tag @book.thumbnail %>
-   <%= @book.status %>
    <% end %>
 </p>
 
 
 
 <div>
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
-  <%= link_to "Back to books", books_path %>
+  <%= link_to "本を編集する", edit_book_path(@book) %> |
+  <%= link_to "一覧画面に戻る", books_path %>
 
-  <%= button_to "Destroy this book", @book, method: :delete %>
+  <%= button_to "書籍を削除する", @book, method: :delete %>
 </div>
 
 

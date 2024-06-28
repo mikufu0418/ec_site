@@ -4,6 +4,7 @@
 <p><%= link_to current_user.email, mypage_path %>さんようこそ</p>
 <% end %>
 
+  <%= link_to '買い物かごを見る', cart_path(session[:cart_id]) %>
 
 
 <h1>書籍商品一覧📖🛒</h1>
@@ -12,6 +13,7 @@
 <table border="1">
   <thead>
     <tr>
+      <th>イメージ画像<th>
       <th>タイトル</th>
       <th>タグ</th>
       <th>著者</th>
@@ -25,6 +27,11 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+      <td class="image-cell">
+          <% if book.photo.attached? %>
+            <%= image_tag book.thumbnail %>
+          <% end %>
+        </td>
         <td><%= book.title %></td>
         <td><%= book.tags.map(&:name).join(', ') %></td>
         <td><%= book.author %></td>
@@ -41,7 +48,6 @@
     <% end %>
   </tbody>
 </table>
-  <%= link_to '買い物かごを見る', cart_path(session[:cart_id]) %>
 
 
 <style>

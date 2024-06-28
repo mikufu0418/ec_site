@@ -1,4 +1,52 @@
-<p>注文が完了しました</p>
-<p>注文数: <%= @order.total_number %><span>冊</span></p>  
-<p>合計金額: <%= @order.total_price %><span>円（税込）</span></p> 
-<%= link_to '商品一覧へ戻る', products_path %> 
+<div class="order-completion-message">
+  <p>注文が完了しました！</p>
+  <p>注文数: <%= @order.total_number %> <span>冊</span></p>
+  <p>合計金額: <%= @order.total_price %> <span>円（税込）</span></p>
+</div>
+
+<div class="return-to-products">
+  <%= link_to '商品一覧へ戻る', products_path, class: "btn btn-primary" %>
+</div>
+
+<style>
+  .order-completion-message {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .order-completion-message p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .order-completion-message span {
+    font-size: 14px;
+    color: #888;
+    margin-left: 5px;
+  }
+
+  .return-to-products {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .return-to-products .btn-primary {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .return-to-products .btn-primary:hover {
+    background-color: #0056b3;
+  }
+</style>

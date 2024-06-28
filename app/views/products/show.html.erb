@@ -21,7 +21,12 @@
         <td><%= @book.author %></td>
         <td><%= @book.published_on %></td>
         <td><%= @book.price %></td>
-        <td><%= @book.status %></td>
+        <% if @book.status == 'soldout' %>
+        <td class="soldout">売り切れ</td>
+      <% else %>
+        <td><%= @book.status == 'sale' ? '販売中' : @book.status %></td>
+      <% end %>
+
   </tbody>
 </table>
 
